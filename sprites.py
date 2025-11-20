@@ -17,7 +17,7 @@ class Player(pygame.sprite.Sprite):
         self.height = tile_size
         
         self.image = pygame.Surface((self.width, self.height))
-        self.image.fill((255, 0, 0))
+        self.image = pygame.image.load("img/capybara.png")
 
         self.rect = self.image.get_rect()
         self.rect.x = self.x
@@ -25,13 +25,13 @@ class Player(pygame.sprite.Sprite):
 
     def movement(self):
         keys = pygame.key.get_pressed()
-        if keys[pygame.K_LEFT]:
+        if keys[pygame.K_a]:
             self.rect.x -= 5
-        if keys[pygame.K_RIGHT]:
+        if keys[pygame.K_d]:
             self.rect.x += 5
-        if keys[pygame.K_UP]:
+        if keys[pygame.K_w]:
             self.rect.y -= 5
-        if keys[pygame.K_DOWN]:
+        if keys[pygame.K_s]:
             self.rect.y += 5
     
     def update(self):

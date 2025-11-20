@@ -1,6 +1,7 @@
 import pygame
 from sprites import *
 from config import *
+from TitlePage import *
 import sys
 
 class Game:
@@ -10,7 +11,7 @@ class Game:
         self.clock = pygame.time.Clock()
         self.running = True
 
-    def run(self):
+    def new(self):
     #mäng hakkab käima
         self.playing = True
         self.all_sprites = pygame.sprite.LayeredUpdates()
@@ -19,7 +20,6 @@ class Game:
         self.attacks = pygame.sprite.LayeredUpdates()
 
         self.player = Player(self, 1, 2)
-        self.run()
 
     def events(self):
         for event in pygame.event.get():
@@ -47,13 +47,13 @@ class Game:
 
     def game_over(self):
         pass
-
+ 
     def intro_screen(self):
         pass
 
 g = Game()
-g.intro_screen()
 g.new()
+g.intro_screen()
 while g.running:
     g.main()
     g.game_over()
