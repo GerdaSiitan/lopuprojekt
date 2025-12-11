@@ -20,7 +20,6 @@ class Game:
         self.attacks = pygame.sprite.LayeredUpdates()
 
         self.player = Player(self, 1, 2)
-        self.npc = ArchE(self, 4.5, 1)
 
     def events(self):
         for event in pygame.event.get():
@@ -32,7 +31,7 @@ class Game:
         self.all_sprites.update()
 
     def draw(self):
-        self.screen.fill((211, 211, 211))
+        self.screen.fill((0, 0, 0))
         self.all_sprites.draw(self.screen)
         self.clock.tick(60)
         pygame.display.update()
