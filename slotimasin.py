@@ -91,29 +91,9 @@ class SlotMachine:
             return None
         return pygame.transform.smoothscale(bg, (SCREEN_WIDTH, SCREEN_HEIGHT))
 
-    # ✅ UUS: mahutab pildi kasti sisse (proportsioon säilib, pilt tsentris)
-    def _fit_image_into_box(self, img: pygame.Surface, box_w: int, box_h: int, padding: int = 6) -> pygame.Surface:
-        surface = pygame.Surface((box_w, box_h), pygame.SRCALPHA)
-
-        max_w = box_w - padding * 2
-        max_h = box_h - padding * 2
-
-        iw, ih = img.get_width(), img.get_height()
-        if iw <= 0 or ih <= 0:
-            return surface
-
-        scale = min(max_w / iw, max_h / ih)
-        new_w = max(1, int(iw * scale))
-        new_h = max(1, int(ih * scale))
-
-        scaled = pygame.transform.smoothscale(img, (new_w, new_h))
-        rect = scaled.get_rect(center=(box_w // 2, box_h // 2))
-        surface.blit(scaled, rect)
-        return surface
-
     def _load_symbol_images(self, paths: list[str]) -> list[pygame.Surface]:
-        target_w = REEL_WIDTH - 10
-        target_h = REEL_HEIGHT - 10
+        target_w = REEL_WIDTH - 5
+        target_h = REEL_HEIGHT - 5
 
         loaded: list[pygame.Surface] = []
         for p in paths:
@@ -125,9 +105,7 @@ class SlotMachine:
                 pygame.draw.line(placeholder, (255, 255, 255), (target_w, 0), (0, target_h), 4)
                 loaded.append(placeholder)
             else:
-                # ✅ siit tuleb “mahutamine”
-                fitted = self._fit_image_into_box(img, target_w, target_h, padding=6)
-                loaded.append(fitted)
+                loaded.append(pygame.transform.smoothscale(img, (target_w, target_h)))
 
         return loaded
 
