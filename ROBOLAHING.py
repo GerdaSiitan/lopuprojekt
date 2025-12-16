@@ -1,7 +1,7 @@
 import pygame
 from sprites import *
 from config import *
-from titlepage import TitlePage
+from TitlePage import TitlePage
 import sys
 import math
 
